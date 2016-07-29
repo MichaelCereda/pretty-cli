@@ -57,6 +57,10 @@ class Pretty {
     if(stackKey) return this.stack(stackKey, content, 'warning');
     return this._print(content, 'warning')
   }
+  success(content, stackKey){
+    if(stackKey) return this.stack(stackKey, content, 'success');
+    return this._print(content, 'success')
+  }
 
   _print(content, contentType, template='default'){
     const lambda = m => m;
