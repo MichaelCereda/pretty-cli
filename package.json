@@ -1,6 +1,6 @@
 {
   "name": "pretty-cli",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Pretty-cli is a lightweight utility that helps you to create nice looking command line interfaces. It forces a well structured output and gives unimited flexibility with its templating system without adding any overhead.",
   "main": "lib/index.js",
   "scripts": {
@@ -28,8 +28,8 @@
     "chai": "^3.5.0",
     "mocha": "^2.5.3"
   },
-  "repository" :{
-    "type" : "git",
-    "url" : "https://github.com/MichaelCereda/pretty-cli.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MichaelCereda/pretty-cli.git"
   }
 }
