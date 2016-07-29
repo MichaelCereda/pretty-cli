@@ -90,6 +90,8 @@ pretty.addCustomMethod('stats', function(content){
 pretty.error({type:'title', name:'BUILD', message:'complete with errors'})
 pretty.stats({time:'30ms', errors:12, warnings:3})
 ```
+![pretty-cli](https://cloud.githubusercontent.com/assets/107390/17260213/15b804da-559d-11e6-8f3c-22149b5b1fcd.jpg)
+
 
 Use stacks to save messages with a key instead of printing them
 

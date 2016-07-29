@@ -15,7 +15,18 @@ pretty.error({type:'title', name:'BUILD', message:'complete with errors'})
 pretty.stats({time:'30ms', errors:12, warnings:3})
 console.log('')
 pretty.error({message:'../files/test.js\n',name:'MODULE', type:'title'})
-pretty.error({message:'Test', description:"Bla bla\nBla bla"})
+var description =
+  "[00:00:19] Failed to load external module babel-core/register\n"
+ +"[00:00:19] Failed to load external module babel/register\n"
+ +"\n"
+ +"module, __filename, __dirname) { import ...\n"
+ +"                                     ^^^^^^\n"
+ +"\n"
+ +"SyntaxError: Unexpected reserved word\n"
+ +"    at exports.runInThisContext (vm.js:53:16)\n"
+
+
+pretty.error({message:'Test', description:description})
 console.log('')
 pretty.warning({message:'../files/test.js\n',name:'MODULE', type:'title'})
-pretty.warning({message:'Test', description:"Bla bla\nBla bla"})
+pretty.warning({message:'Test', description:description})
