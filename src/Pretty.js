@@ -15,57 +15,62 @@ import path from 'path';
 // import Map from './map';
 
 const DEFAULTS = {
-  template: {}
+  template: {},
+  printOutput: true,
 }
-
-
 
 class Pretty {
   /**
    * [constructor description]
    * @param  {[type]} settings  [description]
    * @param  {string|object} settings.template  Name of the template or object
+   * @param  {string|object} settings.printOutput If false returns a string instead of using console.log
    * @return {[type]}          [description]
    */
   constructor(settings = {}){
 
     this._stack = [];
-    this.settings = {};
+    this._settings = {};
     this.templates = [];
-    Object.assign(this.settings, DEFAULTS, settings)
-    this.addTemplate('default', this.settings.template)
+    Object.assign(this._settings, DEFAULTS, settings)
+    this.addTemplate('default', this._settings.template)
     this.addTemplate('plain', 'plain')
-    // this.settings = settings;
+    // this._settings = settings;
   }
 
   log(content, stackKey){
     if(stackKey) return this.stack(stackKey, content, 'log');
-    this._print(content, 'log')
+    return this._print(content, 'log')
   }
 
   info(content, stackKey){
     if(stackKey) return this.stack(stackKey, content, 'info');
-    this._print(content, 'info')
+    return this._print(content, 'info')
   }
 
   error(content, stackKey){
     if(stackKey) return this.stack(stackKey, content, 'error');
-    this._print(content, 'error')
+    return this._print(content, 'error')
   }
 
   warning(content, stackKey){
     if(stackKey) return this.stack(stackKey, content, 'warning');
-    this._print(content, 'warning')
+    return this._print(content, 'warning')
   }
 
   _print(content, contentType, template='default'){
     const lambda = m => m;
-
+    if(!content) content = '';
     var template = this.templates[template][contentType]
                   ||
                     this.templates['plain'][contentType]
+    let str = template(content);
 
-    console.log(template(content));
+    if(this._settings.printOutput===false){
+      return str;
+    }
+
+    console.log(str);
   }
 
   addTemplate(name, obj_or_path){

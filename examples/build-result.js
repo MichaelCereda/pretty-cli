@@ -26,6 +26,7 @@ var description =
  +"    at exports.runInThisContext (vm.js:53:16)\n"
 
 
+
 pretty.error({message:'Test', description:description})
 console.log('')
 pretty.warning({message:'../files/test.js\n',name:'MODULE', type:'title'})
