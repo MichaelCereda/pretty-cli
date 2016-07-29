@@ -1,0 +1,31 @@
+{
+  "name": "pretty-cli",
+  "version": "0.0.5",
+  "description": "Pretty-cli is a lightweight utility that helps you to create nice looking command line interfaces. It forces a well structured output and gives unimited flexibility with its templating system without adding any overhead.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha --compilers js:babel-core/register --watch",
+    "dev": "./node_modules/.bin/babel-watch index.js",
+    "compile": "./node_modules/.bin/babel src --optional runtime -d lib",
+    "compile-watch": "./node_modules/.bin/babel src --watch --optional runtime -d lib",
+    "prepublish": "npm run compile"
+  },
+  "keywords": [
+    "console",
+    "pretty-cli",
+    "prettify",
+    "cli",
+    "output",
+    "print",
+    "console.log",
+    "log"
+  ],
+  "author": "Michael Cereda",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.11.4",
+    "babel-preset-es2015": "^6.9.0",
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3"
+  }
+}
