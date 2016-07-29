@@ -1,6 +1,6 @@
 {
   "name": "pretty-cli",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Pretty-cli is a lightweight utility that helps you to create nice looking command line interfaces. It forces a well structured output and gives unimited flexibility with its templating system without adding any overhead.",
   "main": "lib/index.js",
   "scripts": {
