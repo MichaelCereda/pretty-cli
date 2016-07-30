@@ -1,7 +1,9 @@
-## Synopsis
+# Pretty-cli
 
 Pretty-cli is a lightweight utility that helps you to create nice looking command line interfaces. It forces a well structured output and gives unimited flexibility with its templating system without adding any overhead.
 Check the code examples.
+
+![out](https://cloud.githubusercontent.com/assets/107390/17268513/0be770fa-55fa-11e6-87cb-b07f70864fc7.gif)
 
 ## Code Example
 
@@ -60,7 +62,7 @@ There are no limitations.
 ```javascript
 var colors = require('colors');
 
-module.exports = {
+var MY_TEMPLATE = {
   'info': function(message){return ' I '.bgBlue.black +" " + message},
   'error': function(message){return ' E '.bgRed.white +" " + message},
   'log': function(message){return ' L '.bgWhite.black +" " + message},
@@ -92,10 +94,21 @@ pretty.stats({time:'30ms', errors:12, warnings:3})
 ```
 ![pretty-cli](https://cloud.githubusercontent.com/assets/107390/17260213/15b804da-559d-11e6-8f3c-22149b5b1fcd.jpg)
 
+### Utils
 
-Use stacks to save messages with a key instead of printing them
+__line__ is used to create another line of the same paragraph.  
+In order to obtain this effect you need to have a 'line' key in the template
 
 ```javascript
+var MY_TEMPLATE = {
+  //...
+  'error': function(message){return ' E '.bgRed.white +" " + message},
+  //...
+  'line': function(message){return '    ' + message}
+}
+
+pretty.error({message:'../files/test.js\n',name:'MODULE', type:'title'})
+      .line('text in the same paragraph.')
 ```
 
 ## Motivation
