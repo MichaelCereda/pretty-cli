@@ -13,11 +13,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 import fs from 'fs';
 import path from 'path';
 // import Map from './map';
+import utils from './utils';
 
 const DEFAULTS = {
   template: {},
   printOutput: true,
 }
+
 
 class Pretty {
   /**
@@ -75,6 +77,8 @@ class Pretty {
     }
 
     console.log(str);
+
+    return utils(template, this);
   }
 
   addTemplate(name, obj_or_path){
@@ -112,7 +116,7 @@ class Pretty {
    * @param  {string} type Type of the message
    * @return {object} Returns content itself
    */
-  stack(key, content, type){
+  stack(key, content, type){ // TODO content can be an array
     if(!this._stack[key]){
       this._stack[key] = [];
     }
