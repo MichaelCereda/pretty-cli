@@ -8,7 +8,7 @@ const TEMPLATE = {
   'log': function(message){return ' L '.bgWhite.black +" " + message},
   'warning': function(message){return ' W '.bgYellow.black +" " + message}
 }
-var pretty = new(require('../src/Pretty.js'))({
+var pretty = require('../src/pretty.js')({
   template: TEMPLATE
 });
 

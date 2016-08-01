@@ -4,7 +4,7 @@ var colors = require('colors')
 
 const TEMPLATE = require('../src/templates/basic');
 
-var pretty = new(require('../src/Pretty.js'))({
+var pretty = require('../src/pretty.js')({
   template: 'basic'
 });
 

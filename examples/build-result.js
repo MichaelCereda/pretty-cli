@@ -1,6 +1,4 @@
-var Pretty = require('../lib');
-
-pretty = new Pretty({
+var pretty = require('../lib')({
   template: 'advanced'
 })
 pretty.addCustomMethod('stats', function(content){

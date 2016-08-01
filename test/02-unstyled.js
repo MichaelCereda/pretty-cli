@@ -1,6 +1,6 @@
 var assert = require('chai').assert;
 var captureStream = require('./stream.js');
-var pretty = new(require('../src/Pretty.js'))();
+var pretty = require('../src/pretty.js')();
 
 
 describe("Unstyled output", function(){
