@@ -5,7 +5,7 @@ var colors = require('colors')
 const TEMPLATE = require('../src/templates/advanced');
 
 var pretty = require('../src/pretty.js')({
-  template: 'advanced'
+  template: TEMPLATE
 });
 
 
@@ -18,7 +18,7 @@ describe("Context", function(){
       hook.unhook();
     });
 
-    it("Should print title and message from the stack", function(){
+    it("Should add field from context", function(){
       var title = {type:'title', name:'WARNING', message:"This is a warning title\n"};
       var message = "This is a warning message\n"
       var message_obj = {message:"This is a warning message with description"}
@@ -28,7 +28,7 @@ describe("Context", function(){
       pretty.warning(message_obj);
 
       var checkMessage = TEMPLATE.warning(title)+'\n' +
-                         TEMPLATE.warning(message)+'\n' + 
+                         TEMPLATE.warning(message)+'\n' +
                           TEMPLATE.warning(message_obj)+'\n'
                        ;
       assert.equal(hook.captured(), checkMessage);

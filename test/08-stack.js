@@ -4,9 +4,7 @@ var colors = require('colors')
 
 const TEMPLATE = require('../src/templates/advanced');
 
-var pretty = require('../src/pretty.js')({
-  template: 'advanced'
-});
+
 
 
 describe("Stack", function(){
@@ -22,7 +20,10 @@ describe("Stack", function(){
       var title = {type:'title', name:'WARNING', message:"This is a warning title\n"};
       var message = "This is a warning message\n"
       var message_obj = {message:"This is a warning message with description",
-            description:'You can add very long descriptions, also pieces of code'}
+            description:'You can add very long descriptions, also pieces of code'};
+            var pretty = require('../src/pretty.js')({
+                    template: TEMPLATE
+            });
       var buildStack = pretty.stack('build');
       buildStack.warning(title);
       buildStack.warning(message);
@@ -35,11 +36,14 @@ describe("Stack", function(){
                        ;
       assert.equal(hook.captured(),checkMessage);
     });
-    it.only("Should handle multiple stacks independently", function(){
+    it("Should handle multiple stacks independently", function(){
       var title = {type:'title', name:'WARNING', message:"This is a warning title\n"};
       var message = "This is a warning message\n"
       var message_obj = {message:"This is a warning message with description",
-            description:'You can add very long descriptions, also pieces of code'}
+            description:'You can add very long descriptions, also pieces of code'};
+      var pretty = require('../src/pretty.js')({
+              template: TEMPLATE
+      });
       var buildStack = pretty.stack('build');
       buildStack.warning(title);
       buildStack.warning(message);
@@ -48,8 +52,7 @@ describe("Stack", function(){
 
       var checkMessage = TEMPLATE.warning(title)+'\n'
                        + TEMPLATE.warning(message)+'\n'
-                       + TEMPLATE.warning(message_obj)+'\n'
-                       ;
+                       + TEMPLATE.warning(message_obj)+'\n';
 
        var testStack = pretty.stack('test');
        testStack.warning({type:'title', name:'WARNING', message:"Test title\n"});

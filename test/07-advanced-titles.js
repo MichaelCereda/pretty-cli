@@ -5,7 +5,7 @@ var colors = require('colors')
 const TEMPLATE = require('../src/templates/advanced');
 
 var pretty = require('../src/pretty.js')({
-  template: 'advanced'
+  template: TEMPLATE
 });
 
 

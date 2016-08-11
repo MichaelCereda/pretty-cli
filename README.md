@@ -6,6 +6,13 @@ Check the code examples.
 
 ![out](https://cloud.githubusercontent.com/assets/107390/17268513/0be770fa-55fa-11e6-87cb-b07f70864fc7.gif)
 
+## Installation
+
+Just use NPM and you're ready to go
+```
+npm install pretty-cli --save
+```
+
 ## Code Example
 
 Instead of using console.log to output your messages:
@@ -30,7 +37,7 @@ Use templates that unify your design
 
 ```javascript
 pretty = require('pretty-cli')({
-  template: 'advanced'
+  template: 
 })
 pretty.log("Log Message");
 pretty.error("Error Message");
@@ -128,7 +135,7 @@ Stack all the messages and display them at the end of the execution or maybe pas
 
 ### Utils
 
-__line__ is used to create another line of the same paragraph.  
+<!-- __line__ is used to create another line of the same paragraph.  
 In order to obtain this effect you need to have a 'line' key in the template
 
 ```javascript
@@ -141,22 +148,16 @@ var MY_TEMPLATE = {
 
 pretty.error({message:'../files/test.js\n',name:'MODULE', type:'title'})
       .line('text in the same paragraph.')
-```
+``` -->
+
+
+
+
+
 
 ## Motivation
 
 This library has been created to help the js community in creating nice looking command line interfaces with the objective of improving current practices and standardize the output.
-
-## Installation
-
-Just use NPM and you're ready to go
-```
-npm install pretty-cli --save
-```
-
-## API Reference
-
-
 
 ## Tests
 

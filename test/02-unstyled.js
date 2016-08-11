@@ -8,6 +8,7 @@ describe("Unstyled output", function(){
     beforeEach(function(){
       hook = captureStream(process.stdout);
     });
+    
     afterEach(function(){
       hook.unhook();
     });

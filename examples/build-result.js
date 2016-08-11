@@ -1,5 +1,5 @@
 var pretty = require('../lib')({
-  template: 'advanced'
+  template: require('../lib/templates/advanced')
 })
 pretty.addCustomMethod('stats', function(content){
   return pretty.error({

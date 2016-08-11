@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --watch",
+    "test-dbg": "mocha --debug --compilers js:babel-core/register --watch",
     "dev": "./node_modules/.bin/babel-watch index.js",
     "compile": "./node_modules/.bin/babel src --optional runtime -d lib",
     "compile-watch": "./node_modules/.bin/babel src --watch --optional runtime -d lib",
