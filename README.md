@@ -37,7 +37,7 @@ Use templates that unify your design
 
 ```javascript
 pretty = require('pretty-cli')({
-  template: 
+  template:
 })
 pretty.log("Log Message");
 pretty.error("Error Message");
@@ -50,7 +50,7 @@ With custom templates you can unify your styles and use complex objects.
 
 ```javascript
 pretty = require('pretty-cli')({
-  template: 'advanced'
+  template: require('myTemplate')
 })
 pretty.error({message:'../files/test.js\n',name:'MODULE', type:'title'})
 pretty.error({message:'Test', description:"Long description message or code sample"})
@@ -80,7 +80,7 @@ Create custom print methods to automate special tasks
 
 ```javascript
 pretty = require('pretty-cli')({
-  template: 'advanced'
+  template: require('myTemplate')
 })
 
 pretty.addCustomMethod('stats', function(content){
@@ -94,6 +94,22 @@ pretty.error({type:'title', name:'BUILD', message:'complete with errors'})
 pretty.stats({time:'30ms', errors:12, warnings:3})
 ```
 ![pretty-cli](https://cloud.githubusercontent.com/assets/107390/17260213/15b804da-559d-11e6-8f3c-22149b5b1fcd.jpg)
+
+You can also define custom methods using the template itself.  
+This feature is very useful when you have to define a new message type (by default pretty-cli ships log, error, success, info).
+
+```javascript
+const TEMPLATE = {
+  //...
+  note: (message)=>{return 'NOTE:'+message}
+}
+
+pretty = require('pretty-cli')({
+  template: TEMPLATE
+})
+
+pretty.note('my note')
+```
 
 #### Context
 Pretty-cli focuses on semplicity and reusability. You don't have to repeat yourself.

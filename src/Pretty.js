@@ -10,6 +10,8 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+import {union} from 'lodash';
+
 class ExternalInterface{
   constructor(opts){
     this.settings = {};
@@ -23,13 +25,13 @@ class ExternalInterface{
     this._printFn = opts.print;
     this._cached_messages = [];
 
-    // console.log('Ei', this, opts);
-    [ 'log',
+    let methods = union([ 'log',
       'info',
       'warning',
       'success',
       'error'
-    ].map((method, i)=>{
+    ], Object.keys(opts.template))
+    methods.map((method, i)=>{
       this[method] = ((contentType)=>{
         var _ct = contentType;
         return (content)=>{
@@ -106,5 +108,6 @@ module.exports = function(opts){
   // Inizializing output function
   opts.output = opts.output(opts)
   opts.print = opts.output
+  // console.log(opts);
   return new ExternalInterface(opts)
 }
