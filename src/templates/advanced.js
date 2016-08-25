@@ -7,9 +7,9 @@
 /**
  * Creating advanced themes is very easy.
  * _content_ can be a string or a JSON object, you have total control over the
- * formattation.
+ * formatting.
  *
- * In these case I'm building the template using a loop, you can do as you
+ * Here I'm building the template using a loop, you can do as you
  * prefer. Loops help you to keep your style intact even if you add a lot of
  * elements.
  */
