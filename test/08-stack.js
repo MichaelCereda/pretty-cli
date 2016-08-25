@@ -1,73 +1,47 @@
-var assert = require('chai').assert;
-var captureStream = require('./stream.js');
-var colors = require('colors')
+const assert = require('chai').assert;
+const captureStream = require('./stream.js');
+const colors = require('colors');
+const prettyInit = require('../src/pretty.js');
 
-const TEMPLATE = require('../src/templates/advanced');
+const msg = require('./mockData/messages').warnings;
+const template = require('../src/templates/advanced');
+const pretty = require('../src/pretty.js')({
+  template
+});
 
+function buildStack(stack, msg) {
+  return msg.forEach(item => stack.warning(item));
+}
 
+describe('Stack', () => {
+  let hook;
+  let stack;
 
+  beforeEach(() => {
+    hook = captureStream(process.stdout);
+    stack = pretty.stack('build');
+  });
 
-describe("Stack", function(){
-  var hook;
-    beforeEach(function(){
-      hook = captureStream(process.stdout);
-    });
-    afterEach(function(){
-      hook.unhook();
-    });
+  afterEach(() => {
+    hook.unhook();
+  });
 
-    it("Should print title and message from the stack", function(){
-      var title = {type:'title', name:'WARNING', message:"This is a warning title\n"};
-      var message = "This is a warning message\n"
-      var message_obj = {message:"This is a warning message with description",
-            description:'You can add very long descriptions, also pieces of code'};
-            var pretty = require('../src/pretty.js')({
-                    template: TEMPLATE
-            });
-      var buildStack = pretty.stack('build');
-      buildStack.warning(title);
-      buildStack.warning(message);
-      buildStack.warning(message_obj);
+  it('Should print title and message from the stack', () => {
+    buildStack(stack, msg);
+    stack.print();
 
-      buildStack.print()
-      var checkMessage = TEMPLATE.warning(title)+'\n'
-                       + TEMPLATE.warning(message)+'\n'
-                       + TEMPLATE.warning(message_obj)+'\n'
-                       ;
-      assert.equal(hook.captured(),checkMessage);
-    });
-    it("Should handle multiple stacks independently", function(){
-      var title = {type:'title', name:'WARNING', message:"This is a warning title\n"};
-      var message = "This is a warning message\n"
-      var message_obj = {message:"This is a warning message with description",
-            description:'You can add very long descriptions, also pieces of code'};
-      var pretty = require('../src/pretty.js')({
-              template: TEMPLATE
-      });
-      var buildStack = pretty.stack('build');
-      buildStack.warning(title);
-      buildStack.warning(message);
-      buildStack.warning(message_obj);
+    const expected = msg.map(title => template.warning(title)).join('\n');
+    assert.deepEqual(hook.captured(), expected);
+  });
 
+  it('Should handle multiple stacks independently', () => {
+    buildStack(stack, msg);
+    buildStack(stack, msg);
 
-      var checkMessage = TEMPLATE.warning(title)+'\n'
-                       + TEMPLATE.warning(message)+'\n'
-                       + TEMPLATE.warning(message_obj)+'\n';
+    stack.print();
 
-       var testStack = pretty.stack('test');
-       testStack.warning({type:'title', name:'WARNING', message:"Test title\n"});
-       testStack.warning(message);
-       testStack.warning(message_obj);
-
-      //  console.log(buildStack.get())
-       buildStack.print();
-
-       //testStack.print()
-      //  var checkMessage = TEMPLATE.warning(title)+'\n'
-      //                   + TEMPLATE.warning(message)+'\n'
-      //                   + TEMPLATE.warning(message_obj)+'\n'
-      //                   ;
-
-      assert.equal(hook.captured(),checkMessage);
-    });
+    let expected = msg.map(title => template.warning(title)).join('\n');
+    expected = expected + expected;
+    assert.deepEqual(hook.captured(), expected);
+  });
 })

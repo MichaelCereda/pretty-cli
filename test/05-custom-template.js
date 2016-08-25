@@ -1,6 +1,6 @@
 var assert = require('chai').assert;
 var captureStream = require('./stream.js');
-var colors = require('colors')
+var colors = require('colors');
 
 const TEMPLATE = {
   'info': function(message){return ' I '.bgBlue.black +" " + message},
