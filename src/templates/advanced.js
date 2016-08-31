@@ -7,9 +7,9 @@
 /**
  * Creating advanced themes is very easy.
  * _content_ can be a string or a JSON object, you have total control over the
- * formattation.
+ * formatting.
  *
- * In these case I'm building the template using a loop, you can do as you
+ * Here I'm building the template using a loop, you can do as you
  * prefer. Loops help you to keep your style intact even if you add a lot of
  * elements.
  */
@@ -48,44 +48,3 @@ Object.keys(types).map(function(type){
   }
 })
 module.exports = template;
-//
-// module.exports = {
-//   'info': function(content){
-//     if(typeof content == 'string'){
-//       return ' I '.bgBlue.black +" " + content
-//     }
-//     if(content.type=='title'){
-//       return block(content.name).bgBlue.black +" " + content.message
-//     }
-//
-//   },
-//   'error': function(content){
-//     if(typeof content == 'string'){
-//       return ' E '.bgRed.white +" " + content
-//     }
-//     if(content.type=='title'){
-//       return block(content.name).bgRed.white +" " + content.message.red
-//     }
-//
-//   },
-//   'log': function(content){
-//     if(typeof content == 'string'){
-//       return ' L '.bgWhite.black +" " + content
-//     }
-//     if(content.type=='title'){
-//       return block(content.name).bgWhite.black +" " + content.message
-//     }
-//
-//   },
-//   'warning': function(content){
-//     if(typeof content == 'string'){
-//       return ' W '.bgYellow.black +" " + content
-//     }
-//     if(content.type=='title'){
-//       return block(content.name).bgYellow.black +" " + content.message.yellow
-//     } else {
-//
-//     }
-//
-//   }
-// }
